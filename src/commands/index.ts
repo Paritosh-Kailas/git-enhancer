@@ -6,6 +6,7 @@ import { registerConflictsCommand } from "./conflicts.js";
 import { registerHealthCommand } from "./health.js";
 import { registerStashCommand } from "./stash.js";
 import { registerStatusCommand } from "./status.js";
+import { registerLogCommand } from "./log.js";
 
 export function registerCommands(program: Command): void {
   registerStatusCommand(program);
@@ -14,4 +15,5 @@ export function registerCommands(program: Command): void {
   registerStashCommand(program);
   registerConflictsCommand(program);
   registerHealthCommand(program);
+  registerLogCommand(program);
 }
