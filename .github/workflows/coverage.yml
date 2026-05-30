@@ -11,4 +11,4 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run test -- --coverage
-      - uses: codecov/codecov-action@3
+      # - uses: codecov/codecov-action@3
