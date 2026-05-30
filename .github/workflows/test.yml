@@ -1,7 +1,7 @@
 name: Test Matrix
 on: [push, pull_request]
 jobs:
-  test: # ← Fixed: proper indentation
+  test:
     runs-on: ubuntu-latest
     strategy:
       matrix:

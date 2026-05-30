@@ -5,7 +5,7 @@ on:
       - "v*"
 jobs:
   build:
-    runs-on: ubuntu-latest # ← Fixed: runs-on (not "runs on")
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

@@ -4,7 +4,6 @@ import { promisify } from "node:util";
 import type {
   BranchInfo,
   CleanupPlan,
-  CommitInfo,
   ConflictReport,
   GitHealthReport,
   RepositorySnapshot,
@@ -21,7 +20,6 @@ export interface GitService {
   getStashEntries(): Promise<StashEntry[]>;
   getConflictReport(): Promise<ConflictReport>;
   getHealthReport(defaultBranch: string): Promise<GitHealthReport>;
-  getCommitHistory(): Promise<CommitInfo[]>;
 }
 
 export function createGitService(cwd: string): GitService {
@@ -150,32 +148,6 @@ export function createGitService(cwd: string): GitService {
         aheadCount: snapshot.aheadCount,
         behindCount: snapshot.behindCount
       } satisfies GitHealthReport;
-    },
-
-    async getCommitHistory() {
-      const output = await runGit(
-        "log",
-        "--oneline",
-        "--pretty=format:%H|%an|%ar|%s",
-        "-20"
-      );
-
-      if (!output) {
-        return [];
-      }
-
-      return output
-        .split("\n")
-        .filter(Boolean)
-        .map((line) => {
-          const [hash, author, date, ...messageParts] = line.split("|");
-          return {
-            hash: hash ?? "",
-            author: author ?? "",
-            date: date ?? "",
-            message: messageParts.join("|") ?? ""
-          } satisfies CommitInfo;
-        });
     }
   };
 }

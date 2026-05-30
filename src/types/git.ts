@@ -39,10 +39,3 @@ export interface GitHealthReport {
   aheadCount: number;
   behindCount: number;
 }
-
-export interface CommitInfo {
-  hash: string;
-  author: string;
-  date: string;
-  message: string;
-}
