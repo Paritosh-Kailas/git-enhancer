@@ -1,0 +1,16 @@
+name: Security
+on:
+  push:
+  schedule:
+    - cron: "0 0 * * 0" # Runs every Sunday at midnight
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm audit --audit-level=moderate
